@@ -20,10 +20,12 @@ def menu():
                 print("Dato incorrecto, seleccione una opcion valida")
             elif (opcion == 5): 
                 dato = False
-                print("Buen día") 
+                print("Gracias por usar el sistema") 
                 break
             else:
+                opcion_correcta = True
                 ejecutar_opcion(opcion)
+
 
 def ejecutar_opcion(opcion):
     print(opcion)
