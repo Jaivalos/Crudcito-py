@@ -1,6 +1,7 @@
 import sys
 from BD.conexion import DAO
 import funciones
+from os import system
 
 def menu():
 
@@ -32,21 +33,46 @@ def menu():
 def ejecutar_opcion(opcion):
     dao = DAO()
 
+    #----------------------OPCION 1----------------------
     if opcion == 1:
         try:
             cursos = dao.obtener_cursos()
             if(len(cursos) > 0):
                 funciones.listar_cursos(cursos)
             else:
+                system("cls")
                 print("No se encontraron cursos")
         except:
             print("Ocurrio un error")
+
+    #----------------------OPCION 2----------------------
+
     elif opcion == 2:
-        print("Registro")
+        curso = funciones.datos_creacion_curso()
+        try:
+            dao.crear_curso(curso)
+        except:
+            print("Ocurrio un error")
+
+    #----------------------OPCION 3----------------------
+        
     elif opcion == 3: 
         print("Actualización")
+
     elif opcion == 4:
-        print("Eliminación")
+        try:
+            cursos = dao.obtener_cursos()
+            if(len(cursos) > 0):
+                codigo_eliminar = funciones.datos_eliminacion_curso(cursos)
+                
+                if (codigo_eliminar != ""):
+                    dao.eliminar_curso(codigo_eliminar)
+                else:
+                    print("Codigo de curso no encontrado")
+            else:
+                print("No se encontraron cursos")
+        except:
+            print("Ocurrio un error")
     else:
         print("Opcion no valida")
 
