@@ -57,14 +57,27 @@ def ejecutar_opcion(opcion):
     #----------------------OPCION 3----------------------
         
     elif opcion == 3: 
-        print("Actualización")
+        try:
+            cursos = dao.obtener_cursos()
+            if(len(cursos) > 0):
+                curso = funciones.datos_actualizacion_curso(cursos)
+                if curso:
+                    dao.actualizar_curso(curso)
+                else:
+                    print("Codigo de curso a actualizar no encontrado")
+            else:
+                print("No se encontraron cursos")
+        except:
+            print("Ocurrio un error")
+
+    #----------------------OPCION 3----------------------
 
     elif opcion == 4:
         try:
             cursos = dao.obtener_cursos()
             if(len(cursos) > 0):
                 codigo_eliminar = funciones.datos_eliminacion_curso(cursos)
-                
+
                 if (codigo_eliminar != ""):
                     dao.eliminar_curso(codigo_eliminar)
                 else:

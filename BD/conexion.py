@@ -36,6 +36,16 @@ class DAO():
             except Error as e:
                 print("Error al crear curso ", e)
 
+    def actualizar_curso(self, curso):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sql = "update curso set nombre='{0}', creditos= '{1}' where codigo= '{2}')"
+                cursor.execute(sql.format(curso[1], curso[2], curso[0]))
+                self.conexion.commit()
+                print("Curso actualizado.")
+            except Error as e:
+                print("Error al actualizar curso ", e)
 
     def eliminar_curso(self, codigo_eliminar):
         if self.conexion.is_connected():

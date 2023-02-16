@@ -46,6 +46,37 @@ def datos_creacion_curso():
     curso = (codigo, nombre, creditos)
     return curso
 
+#----------------------ACTUALIZAR CURSOS----------------------
+
+def datos_actualizacion_curso(cursos):
+    listar_cursos(cursos)
+    existe_codigo = False
+    codigo_editar = input("Ingrese codigo del curso a editar: ")
+    for cur in cursos:
+        if cur[0] == int(codigo_eliminar):
+            existe_codigo = True
+            break
+
+    if existe_codigo == True:
+        nombre = input("Ingrese el nombre del curso: ")
+
+        creditos_correctos = False
+        while(not creditos_correctos):
+            creditos = input("Ingrese la cantidad de creditos del curso: ")
+            if ((creditos.isnumeric())):
+                if(int(creditos) > 0):
+                    creditos_correctos = True
+                    creditos = int(creditos)
+                else:
+                    print("Los creditos deben ser mayor a 0")
+            else:
+                print("Creditos incorrectos")
+        curso = (codigo_editar, nombre, creditos)
+    else:
+        curso = None
+
+    return curso
+
 #----------------------ELIMINAR CURSOS----------------------
 
 def datos_eliminacion_curso(cursos):
