@@ -1,4 +1,6 @@
 import sys
+from BD.conexion import DAO
+import funciones
 
 def menu():
 
@@ -28,8 +30,25 @@ def menu():
 
 
 def ejecutar_opcion(opcion):
-    print(opcion)
+    dao = DAO()
 
+    if opcion == 1:
+        try:
+            cursos = dao.obtener_cursos()
+            if(len(cursos) > 0):
+                funciones.listar_cursos(cursos)
+            else:
+                print("No se encontraron cursos")
+        except:
+            print("Ocurrio un error")
+    elif opcion == 2:
+        print("Registro")
+    elif opcion == 3: 
+        print("Actualización")
+    elif opcion == 4:
+        print("Eliminación")
+    else:
+        print("Opcion no valida")
 
 menu()  
 

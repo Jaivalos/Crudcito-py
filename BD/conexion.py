@@ -9,7 +9,7 @@ class DAO():
                 port=3306,
                 user="root",
                 password="javi0712",
-                db="crud-basico"
+                db="crud_basico"
             )
         except Error as e:
             print("Error al intentar la conexion ", e)
